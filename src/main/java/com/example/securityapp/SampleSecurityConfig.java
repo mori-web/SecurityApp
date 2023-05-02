@@ -14,6 +14,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,6 +22,8 @@ public class SampleSecurityConfig {
 
   @Autowired
   private DataSource dataSource;
+  @Autowired
+  private AuthenticationSuccessHandler authenticationSuccessHandler;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http)
@@ -30,7 +33,7 @@ public class SampleSecurityConfig {
       authorize.anyRequest().permitAll();
     });
     http.formLogin(form -> {
-      form.defaultSuccessUrl("/secret");
+      form.successHandler(authenticationSuccessHandler);
     });
     return http.build();
   }
