@@ -18,7 +18,7 @@ public class AuthenticationSuccessHandler implements
       Authentication authentication) throws IOException, ServletException {
     Set<String>roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-    System.out.println("『" + request + "』");
+    System.out.println("『" + roles + "』");
 
     if(roles.contains("ROLE_ADMIN")) {
       response.sendRedirect(request.getContextPath() + "/admin");

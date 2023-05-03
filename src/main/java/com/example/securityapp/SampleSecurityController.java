@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SampleSecurityController {
 
   @RequestMapping("/")
-  @PreAuthorize("permitAll")
+//  @PreAuthorize("permitAll")
   public ModelAndView index(ModelAndView mav) {
     mav.setViewName("index");
     mav.addObject("title", "Index page");
@@ -22,7 +22,7 @@ public class SampleSecurityController {
   }
 
   @RequestMapping("/secret")
-  @PreAuthorize("isAuthenticated()")
+//  @PreAuthorize("isAuthenticated()")
   public ModelAndView secret(ModelAndView mav) {
     mav.setViewName("Secret");
     mav.addObject("title", "Secret page");
@@ -31,7 +31,7 @@ public class SampleSecurityController {
   }
 
   @RequestMapping("/admin")
-  @PreAuthorize("hasRole('ADMIN')")
+//  @PreAuthorize("hasRole('ADMIN')")
   public ModelAndView admin(ModelAndView mav) {
     mav.setViewName("index");
     mav.addObject("title", "Admin page");
